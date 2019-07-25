@@ -9,4 +9,7 @@ const thumbnail = async event => {
     const objetoS3 = await  s3Service.getObject(bucket, key)
     const imagem = await jimp.read(objetoS3)
     const buffer = await imagem.resize(100,100).quality(80).getBufferAsync(jimp.MIME_JPEG);
+    await s3Service.putObject(buffer, key);
 }
+
+module.exports = {thumbnail}

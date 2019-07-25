@@ -6,7 +6,7 @@ AWS.config.update({
 
 const BUCKET = 'nanoservices-imagens-thumbnail-diego'
 
-const s3 = new AWS.s3();
+const s3 = new AWS.S3();
 
 const getObject = (bucket, key) => {
     return new Promise((resolve, reject) => {
@@ -22,5 +22,20 @@ const getObject = (bucket, key) => {
     })
 }
 
+const putObject = (buffer, filename) => {
+    return new Promise((resolve, reject) => {
+        s3.putObject({
+            Bucket: BUCKET,
+            Key: 'thumbnail-' + filename,
+            Body: buffer
+        },(err, data) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(data);
+        })
+    })
+}
 
-module.exports = {getObject}
+
+module.exports = {getObject, putObject}
