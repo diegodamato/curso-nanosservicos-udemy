@@ -4,7 +4,7 @@ AWS.config.update({
     region: 'us-east-1'
 })
 
-const BUCKET = 'nanoservices-imagens-thumbnail-diego'
+const BUCKET = 'nanoservices-imagens-black-white-diego'
 
 const s3 = new AWS.S3();
 
@@ -26,7 +26,7 @@ const putObject = (buffer, filename) => {
     return new Promise((resolve, reject) => {
         s3.putObject({
             Bucket: BUCKET,
-            Key: 'thumbnail-' + filename,
+            Key: filename,
             Body: buffer
         },(err, data) => {
             if (err) {
@@ -34,7 +34,7 @@ const putObject = (buffer, filename) => {
             }
             return resolve({
                 bucket: BUCKET,
-                key: 'thumbnail-' + filename
+                key: filename
             });
         })
     })
