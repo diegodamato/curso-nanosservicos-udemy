@@ -11,6 +11,6 @@
   "license": "ISC",
   "devDependencies": {
     "aws-sdk": "^2.499.0",
-    "serverless": "^1.48.4"
+    "serverless": "^3.25.1"
   }
 }
